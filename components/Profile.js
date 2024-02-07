@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { ScrollView, View, Text, StyleSheet, Image, TouchableOpacity, TextInput, Switch} from "react-native";
-import NavBar from "./NavBar";
 import { MaskedTextInput } from "react-native-mask-text";
-export default function Profile() {
+import AsyncStorage from "@react-native-async-storage/async-storage";
+export default function Profile({navigation}) {
     const[switchOn, setSwitchOn] = useState(false);
     const toggleSwitch = ()=>{
         setSwitchOn(!switchOn)
     }
+
+    const Logout= async ()=>{
+       await AsyncStorage.clear();
+    }
     return (
         <>
-            <NavBar />
             <ScrollView style={styles.container} keyboardDismissMode="on-drag">
                 <View style={styles.logoutContainer}>
                 <Text style={styles.h1}>Personal Information</Text>
-                <TouchableOpacity style={styles.logoutBtn}><Text>Logout</Text></TouchableOpacity>
+                <TouchableOpacity onPress={Logout} style={styles.logoutBtn}><Text>Logout</Text></TouchableOpacity>
                 </View>
                 <View style={styles.avatarContainer}>
                     <Text style={styles.avatarText}>Avatar</Text>

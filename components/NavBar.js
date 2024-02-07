@@ -1,29 +1,20 @@
-import { StyleSheet, View, Image,TouchableOpacity, Text} from "react-native"
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StyleSheet, View, Image,TouchableOpacity} from "react-native"
 
-
-export default function NavBar() {
-//   // Function to clear AsyncStorage
-// const clearAsyncStorage = async () => {
-//   try {
-//     await AsyncStorage.clear();
-//     console.log('AsyncStorage cleared successfully!');
-//   } catch (error) {
-//     console.error('Error clearing AsyncStorage:', error);
-//   }
-// };
+export default function NavBar({navigation}) {
 
     return (
         <View style={styles.container}>
             <Image style={styles.logo} source={require("../assets/Logo.png")} />
-            {/* <View style={styles.buttonContainer}>
-                <TouchableOpacity onPress={clearAsyncStorage} style={styles.button}><Text>Clear Storage</Text></TouchableOpacity>
-            </View> */}
+            <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
+            <Image style={styles.avatarImg} source={require("../assets/Profile.png")}/>
+            </TouchableOpacity>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 0.1, backgroundColor: "#8D8686", justifyContent:"center", alignItems:"center", padding:20},
-    logo:{width:"100%", height:"100%"}
+    container: { flexDirection:"row",flex: 0.15, justifyContent:"space-around", alignItems:"center", paddingTop:20},
+    logo:{height:"100%",resizeMode:"contain"},
+    avatarImg:{width:60, height:60,backgroundColor:"red",borderRadius:50, resizeMode:"contain"},
+
 })

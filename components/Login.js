@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, View, Text, TextInput, TouchableOpacity,Alert} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Navbar from "./NavBar"
 
 export default function Login() {
     const [name, setName] = useState('');
@@ -41,7 +40,6 @@ export default function Login() {
 
     return (
         <>
-        <Navbar/>
         <View style={styles.container}>
             <View style={styles.greetContainer}>
                 <Text style={styles.greet}>Let us get to know you</Text>

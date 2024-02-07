@@ -3,8 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Login from "./components/Login";
-import Navbar from "./components/NavBar";
 import Profile from './components/Profile';
+import Home from './components/Home';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,22 +27,25 @@ function App() {
       }
     };
     checkStorage();
-  },[])
+  }, [])
 
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator>
-          {!hasBothKeys ? (
+        <Stack.Navigator initialRouteName='Home'>
+          {hasBothKeys ? (
             // Onboarding completed, user is signed in
-            <Stack.Screen name="Login" component={Login} />
+            <>
+              <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name='Profile' component={Profile} />
+            </>
           ) : (
             // User is NOT signed in
-            <Stack.Screen name="Profile" component={Profile} />
+            <Stack.Screen name="Login" component={Login} />
           )}
         </Stack.Navigator>
       </NavigationContainer>
-    </> 
+    </>
   );
 }
 
